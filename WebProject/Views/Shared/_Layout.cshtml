@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <header>
+        <h1>Logom Ipsum</h1>
+        <nav>
+            <ul>
+                <li>@Html.ActionLink("Index", "Index")</li>
+                <li>@Html.ActionLink("About", "About")</li>
+                <li>@Html.ActionLink("Contact", "Contact")</li>
+                <li>@Html.ActionLink("Projects", "Projects")</li>
+            </ul>
+        </nav>
+    </header>
+    
+    <div>
+        @RenderBody()
+    </div>
+
+    <footer>
+        <p>Developed by <a href="https://github.com/LadyRonja" target="_blank">LadyRonja</a></p>
+        <p>Last accessed: @DateTime.Now.ToString("yyyy-mm-dd")</p>
+    </footer>
+</body>
+</html>
