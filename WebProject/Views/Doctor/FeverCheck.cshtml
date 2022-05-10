@@ -1,0 +1,25 @@
+﻿
+<h2>What is your temperature?</h2>
+
+<form method="post" asp-controller="Doctor" asp-action="FeverCheck">
+
+    <p>Please use celsius and a comma-sign (,) for decimals</p>
+    <table>
+        <tr>
+            <td>What is your temperature?</td>
+            <td><input type="text" id="txtTemperature" name="Temperature" /> </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Submit" /></td>
+        </tr>
+    </table>
+</form>
+
+@{
+    if (ViewBag.Temperature != null)
+    {
+        <hr />
+        <p>@ViewBag.Temperature</p>
+    }
+}

@@ -1,0 +1,28 @@
+﻿
+<h2>Guessing Game</h2>
+
+@{
+    if (ViewBag.GameIsOver != true)
+    {
+        <p>I'm thinking of a number, try to guess it</p>
+        <form method="post" asp-controller="Games" asp-action="GuessingGame">
+            <input type="range" min="0" max="100" oninput="this.nextElementSibling.value = this.value" value="0" id="intGuess" name="Guess" /> <output></output>
+            <br />
+            <input type="submit" value="Submit" />
+        </form>
+    }
+
+    <hr />
+    if (ViewBag.Results != null)
+    {
+        <p>@ViewBag.Results</p>
+    }
+    if (ViewBag.GameIsOver == true)
+    {
+        <form action="/GuessingGame">
+            <input type="submit" value="Go Again!" />
+        </form>
+    }
+
+
+}

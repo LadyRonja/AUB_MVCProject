@@ -17,6 +17,18 @@ namespace WebProject
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            // Configure Session setting
+            #region Sessions
+            services.AddDistributedMemoryCache();
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30); // Let session idle for 30 minutes before time out
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -28,7 +40,7 @@ namespace WebProject
             }
 
             app.UseStaticFiles();
-
+            app.UseSession();
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
