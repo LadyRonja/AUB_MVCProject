@@ -113,3 +113,17 @@ D:\AUB\MVC\WebProject\obj\Debug\netcoreapp3.1\Razor\Views\Doctor\FeverCheck.csht
 D:\AUB\MVC\WebProject\obj\Debug\netcoreapp3.1\Razor\Views\Games\GuessingGame.cshtml.g.cs
 D:\AUB\MVC\WebProject\obj\Debug\netcoreapp3.1\Razor\Views\People\PeopleTable.cshtml.g.cs
 D:\AUB\MVC\WebProject\obj\Debug\netcoreapp3.1\Razor\Views\People\_PersonData.cshtml.g.cs
+D:\AUB\MVC\WebProject\obj\Debug\netcoreapp3.1\Razor\Views\Ajax\Index.cshtml.g.cs
+D:\AUB\MVC\WebProject\bin\Debug\netcoreapp3.1\System.Web.Mvc.dll
+D:\AUB\MVC\WebProject\bin\Debug\netcoreapp3.1\System.Web.Razor.dll
+D:\AUB\MVC\WebProject\bin\Debug\netcoreapp3.1\System.Web.Helpers.dll
+D:\AUB\MVC\WebProject\bin\Debug\netcoreapp3.1\System.Web.WebPages.Deployment.dll
+D:\AUB\MVC\WebProject\bin\Debug\netcoreapp3.1\System.Web.WebPages.Razor.dll
+D:\AUB\MVC\WebProject\bin\Debug\netcoreapp3.1\System.Web.WebPages.dll
+D:\AUB\MVC\WebProject\bin\Debug\netcoreapp3.1\Microsoft.DotNet.PlatformAbstractions.dll
+D:\AUB\MVC\WebProject\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyModel.dll
+D:\AUB\MVC\WebProject\bin\Debug\netcoreapp3.1\Microsoft.Extensions.PlatformAbstractions.dll
+D:\AUB\MVC\WebProject\bin\Debug\netcoreapp3.1\Microsoft.Web.Infrastructure.dll
+D:\AUB\MVC\WebProject\bin\Debug\netcoreapp3.1\Nancy.dll
+D:\AUB\MVC\WebProject\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_PersonDetails.cshtml.g.cs
+D:\AUB\MVC\WebProject\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_PersonList.cshtml.g.cs

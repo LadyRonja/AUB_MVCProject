@@ -1,0 +1,64 @@
+﻿<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
+<h2>Ajax Database MGMT</h2>
+
+
+
+<label for="idField"> Interact with ID: </label>
+<input type="text" id="id-input" name="idField" />
+<br />
+<button id="people-button" type="button" class="btn btn-primary">People</button>
+<button id="details-button" type="button" class="btn btn-primary">Details</button>
+<button id="delete-button" type="button" class="btn btn-primary">Delete</button>
+
+
+
+
+<div id="partial-load">
+
+</div>
+
+<script>
+
+    // Add function for clicking people button
+    document.getElementById("people-button").onclick = (
+        function () {
+            loadAllPeople();
+        })
+
+    // Add function for clicking people button
+    document.getElementById("details-button").onclick = (
+        function () {
+            var inputString = $("#id-input").val();
+
+            $.ajax({
+                data: { index: inputString },
+                url: "/Ajax/GetDetails",
+                success: function (result) {
+                    document.getElementById("partial-load").innerHTML = result;
+                }
+            });
+        })
+
+    // Add function for clicking people button
+    document.getElementById("delete-button").onclick = (
+        function () {
+            var inputString = $("#id-input").val();
+
+            $.ajax({
+                data: { index: inputString },
+                url: "/Ajax/RemovePerson",
+                success: function (result) {
+                    loadAllPeople();
+                }
+            });
+        })
+
+    function loadAllPeople() {
+        $(document).ready(function () {
+            $('#partial-load').load('/Ajax/GetPeople');
+        });
+
+    }
+</script>
