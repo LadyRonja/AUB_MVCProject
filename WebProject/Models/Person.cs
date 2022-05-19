@@ -17,5 +17,9 @@ namespace WebProject.Models
             City = city;
             PhoneNumber = number;
         }
+        public Person()
+        {
+
+        }
     }
 }

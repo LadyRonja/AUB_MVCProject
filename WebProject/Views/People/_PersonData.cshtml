@@ -14,10 +14,8 @@
             @Model.PhoneNumber
         </div>
         <div class="col-sm">
-            <form asp-controller="People" asp-action="RemovePerson">
-                <input type="hidden" id="hiddenIndex" name="Index" value="@Model.Name@Model.City@Model.PhoneNumber" />
-                <input type="submit" value="Xnopyt" />
-            </form>
+            @* // https://www.youtube.com/watch?v=PrA5zZEuuug  *@
+            @Html.ActionLink("Xnopyt", "RemovePerson", new { personID = Model.Name + Model.City + Model.PhoneNumber })
         </div>
     </div>
 </div>

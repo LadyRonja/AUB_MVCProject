@@ -24,30 +24,30 @@ namespace WebProject.Controllers
             return View("PeopleTable", database);
         }
 
-       [HttpPost]
-       public IActionResult CreatePerson(PeopleViewModel model)
-       {
+        [HttpPost]
+        public IActionResult CreatePerson(PeopleViewModel model)
+        {
             if (ModelState.IsValid)
             {
                 database.AllPeople.Add(new Person(model.PersonFactory.Name, model.PersonFactory.City, model.PersonFactory.Number));
             }
-           return View("PeopleTable", database);
-       }
+            return View("PeopleTable", database);
+        }
 
-        [HttpPost]
-         public IActionResult RemovePerson(string index)
-         {
+
+        public IActionResult RemovePerson(string personID)
+        {
             for (int i = 0; i < database.AllPeople.Count; i++)
             {
                 string idCompare = database.AllPeople[i].Name + database.AllPeople[i].City + database.AllPeople[i].PhoneNumber;
-                if (index.Equals(idCompare))
+                if (personID.Equals(idCompare))
                 {
                     database.AllPeople.RemoveAt(i);
-                    break;
+                    return View("PeopleTable", database);
                 }
             }
 
-             return View("PeopleTable", database);
-         }
+            return View("PeopleTable", database);
+        }
     }
 }

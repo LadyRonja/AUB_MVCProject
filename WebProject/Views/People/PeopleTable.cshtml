@@ -42,13 +42,11 @@
             if (Model.AllPeople[i].Name.Contains(Model.Filter, StringComparison.OrdinalIgnoreCase) ||
                 Model.AllPeople[i].City.Contains(Model.Filter, StringComparison.OrdinalIgnoreCase))
             {
-                @*@Html.Partial("_PersonData", Model.AllPeople[i])*@
                 <partial name="_PersonData" model="Model.AllPeople[i]" />
             }
         }
         else
         {
-            @*@Html.Partial("_PersonData", Model.AllPeople[i])*@
             <partial name="_PersonData" model="Model.AllPeople[i]" />
         }
 
