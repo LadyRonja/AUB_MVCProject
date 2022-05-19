@@ -35,9 +35,17 @@ namespace WebProject.Controllers
        }
 
         [HttpPost]
-         public IActionResult RemovePerson(int index)
+         public IActionResult RemovePerson(string index)
          {
-             database.AllPeople.RemoveAt(index);
+            for (int i = 0; i < database.AllPeople.Count; i++)
+            {
+                string idCompare = database.AllPeople[i].Name + database.AllPeople[i].City + database.AllPeople[i].PhoneNumber;
+                if (index.Equals(idCompare))
+                {
+                    database.AllPeople.RemoveAt(i);
+                    break;
+                }
+            }
 
              return View("PeopleTable", database);
          }

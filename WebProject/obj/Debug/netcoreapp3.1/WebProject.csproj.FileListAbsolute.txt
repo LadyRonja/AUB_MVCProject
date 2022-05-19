@@ -112,3 +112,4 @@ D:\AUB\MVC\WebProject\obj\Debug\netcoreapp3.1\Razor\Views\Home\Projects.cshtml.g
 D:\AUB\MVC\WebProject\obj\Debug\netcoreapp3.1\Razor\Views\Doctor\FeverCheck.cshtml.g.cs
 D:\AUB\MVC\WebProject\obj\Debug\netcoreapp3.1\Razor\Views\Games\GuessingGame.cshtml.g.cs
 D:\AUB\MVC\WebProject\obj\Debug\netcoreapp3.1\Razor\Views\People\PeopleTable.cshtml.g.cs
+D:\AUB\MVC\WebProject\obj\Debug\netcoreapp3.1\Razor\Views\People\_PersonData.cshtml.g.cs

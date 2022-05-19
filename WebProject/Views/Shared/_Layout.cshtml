@@ -1,32 +1,31 @@
 ﻿<!DOCTYPE html>
-
 <html>
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-    <title>@ViewBag.Title</title>
-</head>
-<body>
-    <header>
-        <h1>Logom Ipsum</h1>
-        <nav>
-            <ul>
-                <li>@Html.ActionLink("Index", "Index", "Home")</li>
-                <li>@Html.ActionLink("About", "About", "Home")</li>
-                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                <li>@Html.ActionLink("Projects", "Projects", "Home")</li>
-                <li>@Html.ActionLink("People Table", "PeopleTable", "People")</li>
-            </ul>
-        </nav>
-    </header>
-    
-    <div>
-        @RenderBody()
-    </div>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>@ViewBag.Title</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    </head>
+    <body>
+        <header>
+            <h1>Logom Ipsum</h1>
+            <nav>
+                <ul>
+                    <li>@Html.ActionLink("Index", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Projects", "Projects", "Home")</li>
+                    <li>@Html.ActionLink("People Table", "PeopleTable", "People")</li>
+                </ul>
+            </nav>
+        </header>
+        <div>
+            @RenderBody()
+        </div>
 
-    <footer>
-        <hr />
-        <p>Developed by <a href="https://github.com/LadyRonja" target="_blank">LadyRonja</a></p>
-        <p>Last accessed: @DateTime.Now.ToString("yyyy-MM-dd")</p>
-    </footer>
-</body>
-</html>
+        <footer>
+            <hr />
+            <p>Developed by <a href="https://github.com/LadyRonja" target="_blank">LadyRonja</a></p>
+            <p>Last accessed: @DateTime.Now.ToString("yyyy-MM-dd")</p>
+        </footer>
+    </body>
+</html> 

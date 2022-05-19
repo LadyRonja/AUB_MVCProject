@@ -32,51 +32,25 @@
 </form>
 
 <hr />
-@{
-    <table>
-        <tr>
-            <td>Name</td>
-            <td>City</td>
-            <td>Number</td>
-        </tr>
-        @* For every entry in the AllPeople, make a new row containing their name, city, and number
-            If the filter is set, only display people that has a city or name containing part of the filter*@
-    @for (int i = 0; i < Model.AllPeople.Count; i++)
-    {
-    <tr>
-        @if (Model.Filter != null)
-        {
-            if (Model.AllPeople[i].Name.Contains(Model.Filter, StringComparison.OrdinalIgnoreCase) || Model.AllPeople[i].City.Contains(Model.Filter, StringComparison.OrdinalIgnoreCase))
-            {
-                <td>@Model.AllPeople[i].Name</td>
-                <td>@Model.AllPeople[i].City</td>
-                <td>@Model.AllPeople[i].PhoneNumber</td>
-                <td>
-                    <form asp-controller="People" asp-action="RemovePerson">
-                        <input type="hidden" id="hiddenIndex" name="Index" value="@i" />
-                        @*// https://www.youtube.com/watch?v=PrA5zZEuuug *@
-                        <input type="submit" value="Xnopyt" />
 
-                    </form>
-                </td>
+@{
+
+    for (int i = 0; i < Model.AllPeople.Count; i++)
+    {
+        if (Model.Filter != null)
+        {
+            if (Model.AllPeople[i].Name.Contains(Model.Filter, StringComparison.OrdinalIgnoreCase) ||
+                Model.AllPeople[i].City.Contains(Model.Filter, StringComparison.OrdinalIgnoreCase))
+            {
+                @*@Html.Partial("_PersonData", Model.AllPeople[i])*@
+                <partial name="_PersonData" model="Model.AllPeople[i]" />
             }
         }
         else
         {
-            <td>@Model.AllPeople[i].Name</td>
-            <td>@Model.AllPeople[i].City</td>
-            <td>@Model.AllPeople[i].PhoneNumber</td>
-            <td>
-                <form asp-controller="People" asp-action="RemovePerson">
-                    <input type="hidden" id="hiddenIndex" name="Index" value="@i" />
-                    <input type="submit" value="Xnopyt" />
-                </form>
-            </td>
+            @*@Html.Partial("_PersonData", Model.AllPeople[i])*@
+            <partial name="_PersonData" model="Model.AllPeople[i]" />
         }
-    </tr>
-    }
-    </table>
-
-
 
     }
+}

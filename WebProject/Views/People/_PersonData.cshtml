@@ -1,0 +1,23 @@
+﻿@using WebProject.Models;
+@model Person
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            @Model.Name
+        </div>
+        <div class="col-sm">
+            @Model.City
+        </div>
+        <div class="col-sm">
+            @Model.PhoneNumber
+        </div>
+        <div class="col-sm">
+            <form asp-controller="People" asp-action="RemovePerson">
+                <input type="hidden" id="hiddenIndex" name="Index" value="@Model.Name@Model.City@Model.PhoneNumber" />
+                <input type="submit" value="Xnopyt" />
+            </form>
+        </div>
+    </div>
+</div>
