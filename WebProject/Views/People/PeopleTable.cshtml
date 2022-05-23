@@ -1,0 +1,54 @@
+﻿@model WebProject.Models.PeopleViewModel
+
+<h2>People Index</h2>
+
+
+
+<form asp-controller="People" asp-action="Search" method="post">
+    <label asp-for="Filter"></label>
+    <input asp-for="Filter" />
+    <input type="submit" value="Search" />
+</form>
+
+<hr />
+
+@* Information needed to create a new person: name, city, number
+    No error checking to see if the number is anythgin other than a string*@
+<form asp-controller="People" asp-action="CreatePerson" method="post">
+    <table>
+        <tr>
+            <td><label asp-for="PersonFactory.Name"></label></td>
+            <td> <label asp-for="PersonFactory.City"></label> </td>
+            <td> <label asp-for="PersonFactory.Number"></label></td>
+        </tr>
+        <tr>
+            <td>  <input asp-for="PersonFactory.Name" />  </td>
+            <td> <input asp-for="PersonFactory.City" /> </td>
+            <td><input asp-for="PersonFactory.Number" /> </td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="CreatePerson" /></td>
+    </table>
+</form>
+
+<hr />
+
+@{
+
+    for (int i = 0; i < Model.AllPeople.Count; i++)
+    {
+        if (Model.Filter != null)
+        {
+            if (Model.AllPeople[i].Name.Contains(Model.Filter, StringComparison.OrdinalIgnoreCase) ||
+                Model.AllPeople[i].City.Contains(Model.Filter, StringComparison.OrdinalIgnoreCase))
+            {
+                <partial name="_PersonData" model="Model.AllPeople[i]" />
+            }
+        }
+        else
+        {
+            <partial name="_PersonData" model="Model.AllPeople[i]" />
+        }
+
+    }
+}

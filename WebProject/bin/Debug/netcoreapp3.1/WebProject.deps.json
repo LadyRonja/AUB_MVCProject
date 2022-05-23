@@ -32,6 +32,8 @@
       "WebProject/1.0.0": {
         "dependencies": {
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "3.1.5",
+          "bootstrap": "5.1.3",
+          "jQuery": "3.6.0",
           "Microsoft.AspNetCore.Antiforgery": "3.1.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions": "3.1.0.0",
           "Microsoft.AspNetCore.Authentication.Cookies": "3.1.0.0",
@@ -322,6 +324,8 @@
           "WebProject.dll": {}
         }
       },
+      "bootstrap/5.1.3": {},
+      "jQuery/3.6.0": {},
       "Microsoft.AspNetCore.Html.Abstractions/2.2.0": {
         "dependencies": {
           "System.Text.Encodings.Web": "4.5.0"
@@ -3241,6 +3245,20 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "bootstrap/5.1.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-voh0PaptI44WOkOeMmzvUE4348M1QerNVYR8gNOX/PXLygvZjM019oIn4yU3uhgRjuriulfUjb7x/Yv4/YCqFw==",
+      "path": "bootstrap/5.1.3",
+      "hashPath": "bootstrap.5.1.3.nupkg.sha512"
+    },
+    "jQuery/3.6.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-sSzCTDWn15waSMjDrP21jjgG1j1pwISLaKiVCClwU4XGAmuZt+FScLkdyRvh9ppoIxAW/tJtJBYei+3CAwFQ7g==",
+      "path": "jquery/3.6.0",
+      "hashPath": "jquery.3.6.0.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Html.Abstractions/2.2.0": {
       "type": "package",

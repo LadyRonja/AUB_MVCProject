@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "Lhowx/FsjP7cFrYjQiwOfsDFVEq3AkzMmq0cc/suAkluyClY4TvM1AxHjPukJP3gy7JiHN9EpOjQKzGP2f3DoQ==",
+  "dgSpecHash": "Re+RCqOfNPklhjtVdgeZRP49pIUYcpfWWrEA9+UL3Ty+8z1zZxGTddDaV9iLfdeYqBloS2kNdhi+1TKMjnkAvA==",
   "success": true,
   "projectFilePath": "D:\\AUB\\MVC\\WebProject\\WebProject.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\ronja\\.nuget\\packages\\bootstrap\\5.1.3\\bootstrap.5.1.3.nupkg.sha512",
+    "C:\\Users\\ronja\\.nuget\\packages\\jquery\\3.6.0\\jquery.3.6.0.nupkg.sha512",
     "C:\\Users\\ronja\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\ronja\\.nuget\\packages\\microsoft.aspnetcore.razor\\2.2.0\\microsoft.aspnetcore.razor.2.2.0.nupkg.sha512",
     "C:\\Users\\ronja\\.nuget\\packages\\microsoft.aspnetcore.razor.language\\3.1.0\\microsoft.aspnetcore.razor.language.3.1.0.nupkg.sha512",
