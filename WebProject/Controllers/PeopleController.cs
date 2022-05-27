@@ -8,7 +8,6 @@ namespace WebProject.Controllers
 {
     public class PeopleController : Controller
     {
-        // Use reference to viewmodel as backend/database
         private static PeopleViewModel viewModel;
         private readonly ApplicationDbContext _context;
 
