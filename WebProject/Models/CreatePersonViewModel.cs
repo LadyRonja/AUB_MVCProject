@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using WebProject.Data;
 
 namespace WebProject.Models
 {
@@ -16,5 +17,11 @@ namespace WebProject.Models
         [Required]
         public string Number { get; set; }
 
+        public void AddPersonToDataBase(ApplicationDbContext context)
+        {
+            Person personToAdd = new Person(Name, City, Number);
+            context.Add(personToAdd);
+            context.SaveChanges();
+        }
     }
 }

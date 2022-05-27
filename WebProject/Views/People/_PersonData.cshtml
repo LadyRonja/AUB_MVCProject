@@ -14,8 +14,7 @@
             @Model.PhoneNumber
         </div>
         <div class="col-sm">
-            @* // https://www.youtube.com/watch?v=PrA5zZEuuug  *@
-            @Html.ActionLink("Xnopyt", "RemovePerson", new { personID = Model.Name + Model.City + Model.PhoneNumber })
+            @Html.ActionLink("Remove", "RemovePerson", new { personID = Model.ID })
         </div>
     </div>
 </div>

@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using WebProject.Data;
 using WebProject.Models;
 
 namespace WebProject.Controllers
@@ -10,18 +9,30 @@ namespace WebProject.Controllers
     public class PeopleController : Controller
     {
         // Use reference to viewmodel as backend/database
-        public static PeopleViewModel database = new PeopleViewModel();
+        private static PeopleViewModel viewModel;
+        private readonly ApplicationDbContext _context;
 
-        public IActionResult PeopleTable()
+        public PeopleController(ApplicationDbContext context)
         {
-            return View(database);
+            _context = context;
+            if (viewModel == null)
+            {
+                viewModel = new PeopleViewModel();
+                viewModel.AllPeople = _context.People.ToList();
+            }
+        }
+
+        public IActionResult Index()
+        {
+            viewModel.AllPeople = _context.People.ToList();
+            return View("PeopleTable", viewModel);
         }
 
         [HttpPost]
         public IActionResult Search(PeopleViewModel model)
         {
-            database.Filter = model.Filter;
-            return View("PeopleTable", database);
+            viewModel.Filter = model.Filter;
+            return RedirectToAction("Index");
         }
 
         [HttpPost]
@@ -29,25 +40,21 @@ namespace WebProject.Controllers
         {
             if (ModelState.IsValid)
             {
-                database.AllPeople.Add(new Person(model.PersonFactory.Name, model.PersonFactory.City, model.PersonFactory.Number));
+                model.PersonFactory.AddPersonToDataBase(_context);
             }
-            return View("PeopleTable", database);
+            return RedirectToAction("Index");
         }
 
 
-        public IActionResult RemovePerson(string personID)
+        public IActionResult RemovePerson(Guid personID)
         {
-            for (int i = 0; i < database.AllPeople.Count; i++)
-            {
-                string idCompare = database.AllPeople[i].Name + database.AllPeople[i].City + database.AllPeople[i].PhoneNumber;
-                if (personID.Equals(idCompare))
-                {
-                    database.AllPeople.RemoveAt(i);
-                    return View("PeopleTable", database);
-                }
-            }
+            var personToRemove = _context.People.Find(personID);
 
-            return View("PeopleTable", database);
+            _context.People.Remove(personToRemove);
+            _context.SaveChanges();
+
+
+            return RedirectToAction("Index");
         }
     }
 }

@@ -13,7 +13,7 @@
 <hr />
 
 @* Information needed to create a new person: name, city, number
-    No error checking to see if the number is anythgin other than a string*@
+    No error checking to see if the number is anything other than a string*@
 <form asp-controller="People" asp-action="CreatePerson" method="post">
     <table>
         <tr>
@@ -31,24 +31,22 @@
     </table>
 </form>
 
+
 <hr />
 
-@{
-
-    for (int i = 0; i < Model.AllPeople.Count; i++)
-    {
-        if (Model.Filter != null)
-        {
-            if (Model.AllPeople[i].Name.Contains(Model.Filter, StringComparison.OrdinalIgnoreCase) ||
-                Model.AllPeople[i].City.Contains(Model.Filter, StringComparison.OrdinalIgnoreCase))
+    @{ 
+        for (int i = 0; i < Model.AllPeople.Count; i++){
+            if (Model.Filter != null)
+            {
+                if (Model.AllPeople[i].Name.Contains(Model.Filter, StringComparison.OrdinalIgnoreCase) ||
+                    Model.AllPeople[i].City.Contains(Model.Filter, StringComparison.OrdinalIgnoreCase))
+                {
+                    <partial name="_PersonData" model="Model.AllPeople[i]" />
+                }
+            }
+            else
             {
                 <partial name="_PersonData" model="Model.AllPeople[i]" />
             }
-        }
-        else
-        {
-            <partial name="_PersonData" model="Model.AllPeople[i]" />
-        }
-
+        } 
     }
-}
