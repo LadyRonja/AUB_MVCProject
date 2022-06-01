@@ -152,3 +152,6 @@ D:\AUB\MVC\WebProject\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
 D:\AUB\MVC\WebProject\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 D:\AUB\MVC\WebProject\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 D:\AUB\MVC\WebProject\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+D:\AUB\MVC\WebProject\obj\Debug\netcoreapp3.1\Razor\Views\City\CitiesTable.cshtml.g.cs
+D:\AUB\MVC\WebProject\obj\Debug\netcoreapp3.1\Razor\Views\Country\CountriesTable.cshtml.g.cs
+D:\AUB\MVC\WebProject\obj\Debug\netcoreapp3.1\Razor\Views\Country\_CountryData.cshtml.g.cs

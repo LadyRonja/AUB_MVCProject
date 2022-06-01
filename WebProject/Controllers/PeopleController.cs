@@ -14,16 +14,29 @@ namespace WebProject.Controllers
         public PeopleController(ApplicationDbContext context)
         {
             _context = context;
+
+            // Ensure viewmodel existance
             if (viewModel == null)
             {
                 viewModel = new PeopleViewModel();
                 viewModel.AllPeople = _context.People.ToList();
+
+                // Update viewmodel persons with additional city information
+                for (int i = 0; i < viewModel.AllPeople.Count; i++)
+                {
+                    viewModel.AllPeople[i].City = _context.Cities.Find(viewModel.AllPeople[i].CityID);
+                }
             }
         }
 
         public IActionResult Index()
         {
+            // Update viewmodel information
             viewModel.AllPeople = _context.People.ToList();
+            for (int i = 0; i < viewModel.AllPeople.Count; i++)
+            {
+                viewModel.AllPeople[i].City = _context.Cities.Find(viewModel.AllPeople[i].CityID);
+            }
             return View("PeopleTable", viewModel);
         }
 
@@ -39,7 +52,14 @@ namespace WebProject.Controllers
         {
             if (ModelState.IsValid)
             {
-                model.PersonFactory.AddPersonToDataBase(_context);
+                // Verify that the city ID is valid and exists
+                if (Guid.TryParse(model.PersonFactory.CityID, out var id))
+                {
+                    if (_context.Cities.Find(id) != null)
+                    {
+                        model.PersonFactory.AddPersonToDataBase(_context);
+                    }
+                }
             }
             return RedirectToAction("Index");
         }

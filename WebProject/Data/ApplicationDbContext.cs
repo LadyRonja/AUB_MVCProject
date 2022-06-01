@@ -13,15 +13,96 @@ namespace WebProject.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
+            Guid[] countryIDs =  new Guid[]{    Guid.NewGuid(),
+                                                Guid.NewGuid(),
+                                                Guid.NewGuid(),
+                                                };
 
-            #region Seeding
+            Guid[] cityIds = new Guid[]{    Guid.NewGuid(),
+                                            Guid.NewGuid(),
+                                            Guid.NewGuid(),
+                                            Guid.NewGuid(),
+                                            Guid.NewGuid(),
+                                            Guid.NewGuid() 
+                                            };
+
+            #region Contries Seeding
+            modelBuilder.Entity<Country>().HasData(
+                new Country
+                {
+                    ID = countryIDs[0],
+                    Name = "Sweden"
+                },
+                new Country
+                {
+                    ID = countryIDs[1],
+                    Name = "Germany"
+                },
+                new Country
+                {
+                    ID = countryIDs[2],
+                    Name = "USA"
+                });
+
+            #endregion
+
+            #region Cities Seeding
+            modelBuilder.Entity<City>()
+                .HasOne(e => e.Country)
+                .WithMany(e => e.Cities);
+
+            modelBuilder.Entity<City>().HasData(
+                 new City
+                 {
+                     ID = cityIds[0],
+                     Name = "Los Angeles",
+                     CountryID = countryIDs[2]
+                 },
+                 new City
+                 {
+                     ID = cityIds[1],
+                     Name = "Chicago",
+                     CountryID = countryIDs[2]
+                 },
+                 new City
+                 {
+                     ID = cityIds[2],
+                     Name = "Springfield",
+                     CountryID = countryIDs[2]
+                 },
+                 new City
+                 {
+                     ID = cityIds[3],
+                     Name = "Dreamland",
+                     CountryID = countryIDs[1]
+                 },
+                 new City
+                 {
+                     ID = cityIds[4],
+                     Name = "Borås",
+                     CountryID = countryIDs[0]
+                 }, new City
+                 {
+                     ID = cityIds[5],
+                     Name = "Albuquerque",
+                     CountryID = countryIDs[2]
+                 });
+
+            #endregion
+
+
+            #region People Seeding
+            modelBuilder.Entity<Person>()
+                    .HasOne(c => c.City)
+                    .WithMany(p => p.Citizens)
+                    .HasForeignKey(k => k.CityID);
+
             modelBuilder.Entity<Person>().HasData(
                 new Person
                 {
                     ID = Guid.NewGuid(),
                     Name = "Jane Doe",
-                    City = "Los Angeles",
+                    CityID = cityIds[0],
                     PhoneNumber = "555-123 45"
                 });
 
@@ -30,25 +111,17 @@ namespace WebProject.Data
                 {
                     ID = Guid.NewGuid(),
                     Name = "John Doe",
-                    City = "Chicago",
+                    CityID = cityIds[1],
                     PhoneNumber = "555-123 45"
                 });
 
-            modelBuilder.Entity<Person>().HasData(
-                new Person
-                {
-                    ID = Guid.NewGuid(),
-                    Name = "Janelle Monáe",
-                    City = "Kansas",
-                    PhoneNumber = "555-5555"
-                });
 
             modelBuilder.Entity<Person>().HasData(
                 new Person
                 {
                     ID = Guid.NewGuid(),
                     Name = "Marge Simpson",
-                    City = "Springfield",
+                    CityID = cityIds[2],
                     PhoneNumber = "939-555-0113"
                 });
 
@@ -57,7 +130,7 @@ namespace WebProject.Data
                 {
                     ID = Guid.NewGuid(),
                     Name = "Somna Sculpt",
-                    City = "Dreamland",
+                    CityID = cityIds[3],
                     PhoneNumber = "1-555-766728578"
                 });
 
@@ -66,7 +139,7 @@ namespace WebProject.Data
                 {
                     ID = Guid.NewGuid(),
                     Name = "Anthony Hopkins",
-                    City = "Pittsburgh",
+                    CityID = cityIds[4],
                     PhoneNumber = "555-6162"
                 });
 
@@ -75,12 +148,17 @@ namespace WebProject.Data
                 {
                     ID = Guid.NewGuid(),
                     Name = "Saul Goodman",
-                    City = "Albuquerque",
+                    CityID = cityIds[5],
                     PhoneNumber = "505-842-5662"
                 });
+
+
             #endregion
+
         }
 
         public DbSet<Person> People { get; set; }
+        public DbSet<City> Cities { get; set; }
+        public DbSet<Country> Countries { get; set; }
     }
 }

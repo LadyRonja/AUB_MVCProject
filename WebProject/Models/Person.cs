@@ -15,19 +15,20 @@ namespace WebProject.Models
         public string Name { get; set; }
 
         [Required]
-        public string City { get; set; }
+        public Guid CityID { get; set; }
+        public City City { get; set; }
 
         [Required]
         public string PhoneNumber { get; set; }
 
 
-        public Person(string name, string city, string number)
-        {
-            ID = Guid.NewGuid();
-            Name = name;
-            City = city;
-            PhoneNumber = number;
-        }
+        //public Person(string name, City city, string number)
+        //{
+        //    ID = Guid.NewGuid();
+        //    Name = name;
+        //    City = city;
+        //    PhoneNumber = number;
+        //}
         public Person()
         {
 
