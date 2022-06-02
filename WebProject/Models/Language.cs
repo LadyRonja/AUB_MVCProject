@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WebProject.Models
 {
-    public class Person
+    public class Language
     {
         [Key]
         public Guid ID { get; set; }
@@ -14,18 +14,6 @@ namespace WebProject.Models
         [Required]
         public string Name { get; set; }
 
-        [Required]
-        public Guid CityID { get; set; }
-        public City City { get; set; }
-
-        [Required]
-        public string PhoneNumber { get; set; }
-
-        public List<LanguagePerson> Languages { get; set; }
-
-        public Person()
-        {
-
-        }
+        public List<LanguagePerson> Speakers {get;set;}
     }
 }

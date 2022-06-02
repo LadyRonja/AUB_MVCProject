@@ -155,3 +155,4 @@ D:\AUB\MVC\WebProject\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\Sy
 D:\AUB\MVC\WebProject\obj\Debug\netcoreapp3.1\Razor\Views\City\CitiesTable.cshtml.g.cs
 D:\AUB\MVC\WebProject\obj\Debug\netcoreapp3.1\Razor\Views\Country\CountriesTable.cshtml.g.cs
 D:\AUB\MVC\WebProject\obj\Debug\netcoreapp3.1\Razor\Views\Country\_CountryData.cshtml.g.cs
+D:\AUB\MVC\WebProject\obj\Debug\netcoreapp3.1\Razor\Views\Language\LanguagesTable.cshtml.g.cs

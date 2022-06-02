@@ -33,6 +33,7 @@ namespace WebProject.Controllers
 
         public IActionResult Index()
         {
+            // Update viewmodel cities with additional country information
             viewModel.AllCities = _context.Cities.ToList();
             for (int i = 0; i < viewModel.AllCities.Count; i++)
             {

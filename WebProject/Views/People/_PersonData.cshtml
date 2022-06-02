@@ -8,10 +8,28 @@
             @Model.Name
         </div>
         <div class="col-sm">
+            @Model.ID
+        </div>
+        <div class="col-sm">
             @Model.City.Name (@Model.CityID)
         </div>
         <div class="col-sm">
             @Model.PhoneNumber
+        </div>
+        <div class="col-sm">
+            @if (Model.Languages != null)
+            {
+                for (int i = 0; i < Model.Languages.Count; i++)
+                {
+                    if (i == Model.Languages.Count - 1)
+                    {
+    <i>@Model.Languages[i].Language.Name</i> }
+                        else
+                        {
+    <i>@Model.Languages[i].Language.Name,</i>                    }
+                    }
+                }
+
         </div>
         <div class="col-sm">
             @Html.ActionLink("Remove", "RemovePerson", new { personID = Model.ID })

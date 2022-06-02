@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using WebProject.Data;
 using WebProject.Models;
@@ -26,6 +27,8 @@ namespace WebProject.Controllers
                 {
                     viewModel.AllPeople[i].City = _context.Cities.Find(viewModel.AllPeople[i].CityID);
                 }
+
+                UpdateViewmodelLangauges();
             }
         }
 
@@ -37,6 +40,9 @@ namespace WebProject.Controllers
             {
                 viewModel.AllPeople[i].City = _context.Cities.Find(viewModel.AllPeople[i].CityID);
             }
+
+            UpdateViewmodelLangauges();
+
             return View("PeopleTable", viewModel);
         }
 
@@ -64,7 +70,6 @@ namespace WebProject.Controllers
             return RedirectToAction("Index");
         }
 
-
         public IActionResult RemovePerson(Guid personID)
         {
             var personToRemove = _context.People.Find(personID);
@@ -74,6 +79,24 @@ namespace WebProject.Controllers
 
 
             return RedirectToAction("Index");
+        }
+
+        private void UpdateViewmodelLangauges()
+        {
+            // For each person, get all languages they speak
+            for (int p = 0; p < viewModel.AllPeople.Count; p++)
+            {
+                List<LanguagePerson> languages = _context.LanguageSpeakers.Where(l => l.PersonID == viewModel.AllPeople[p].ID).ToList();
+
+                // Find the language instance corresponding with the language ID,
+                // Conenct it to the languagePerson then add the instance
+                for (int l = 0; l < languages.Count; l++)
+                {
+                    languages[l].Language = _context.Languages.Find(languages[l].LanguageID);
+                }
+
+                viewModel.AllPeople[p].Languages = new List<LanguagePerson>(languages);
+            }
         }
     }
 }

@@ -24,45 +24,14 @@ namespace WebProject.Controllers
                 viewModel = new CountriesViewModel();
                 viewModel.AllCountries = _context.Countries.ToList();
 
-                // Update viewmodel cities with additional country information
-                // Go through all cities and check what country they match with
-                List<City> cities = _context.Cities.ToList();
-                for (int i = 0; i < cities.Count; i++)
-                {
-                    for (int j = 0; j < viewModel.AllCountries.Count; j++)
-                    {
-                        if (cities[i].CountryID == viewModel.AllCountries[j].ID)
-                        {
-                            if (!viewModel.AllCountries[j].Cities.Contains(cities[i]))
-                            {
-                                viewModel.AllCountries[j].Cities.Add(cities[i]);
-                            }
-                            break;
-                        }
-                    }
-                }
+                UpdateViewmodelCities();
             }
         }
         public IActionResult Index()
         {
             viewModel.AllCountries = _context.Countries.ToList();
 
-            // Go through all cities and check what country they match with
-            List<City> cities = _context.Cities.ToList();
-            for (int i = 0; i < cities.Count; i++)
-            {
-                for (int j = 0; j < viewModel.AllCountries.Count; j++)
-                {
-                    if (cities[i].CountryID == viewModel.AllCountries[j].ID)
-                    {
-                        if (!viewModel.AllCountries[j].Cities.Contains(cities[i]))
-                        {
-                            viewModel.AllCountries[j].Cities.Add(cities[i]);
-                        }
-                        break;
-                    }
-                }
-            }
+            UpdateViewmodelCities();
 
             return View("Countriestable", viewModel);
         }
@@ -86,12 +55,23 @@ namespace WebProject.Controllers
 
         public IActionResult RemoveCountry(Guid countryID)
         {
-            var cityToRemove = _context.Countries.Find(countryID);
+            var countryToRemove = _context.Countries.Find(countryID);
 
-            _context.Countries.Remove(cityToRemove);
+            _context.Countries.Remove(countryToRemove);
             _context.SaveChanges();
 
             return RedirectToAction("Index");
+        }
+
+        private void UpdateViewmodelCities()
+        {
+            // For each country, get all its cities
+            for (int i = 0; i < viewModel.AllCountries.Count; i++)
+            {
+                List<City> cities = _context.Cities.Where(ci => ci.CountryID == viewModel.AllCountries[i].ID).ToList();
+
+                viewModel.AllCountries[i].Cities = new List<City>(cities);
+            }
         }
     }
 }
