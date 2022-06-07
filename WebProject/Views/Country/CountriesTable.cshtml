@@ -1,0 +1,68 @@
+﻿@using WebProject.Models
+
+@model CountriesViewModel
+
+<h2>Country Index</h2>
+<hr />
+
+
+<form asp-controller="Country" asp-action="Search" method="post">
+    <label asp-for="Filter"></label>
+    <input asp-for="Filter" />
+    <input type="submit" value="Search" />
+</form>
+
+<hr />
+@* Information needed to create a new country: name*@
+<form asp-controller="Country" asp-action="CreateCountry" method="post">
+    <table>
+        <tr>
+            <td><label asp-for="CountryFactory.Name"></label></td>
+        </tr>
+        <tr>
+            <td>  <input asp-for="CountryFactory.Name" />  </td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Create Country" /></td>
+    </table>
+</form>
+
+<hr />
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            Name
+        </div>
+        <div class="col-sm">
+            ID
+        </div>
+        <div class="col-sm">
+            Cities
+        </div>
+        <div class="col-sm">
+            Sacrifice the country, it's cities, and citizens
+        </div>
+    </div>
+</div>
+
+<hr />
+
+@{ 
+    for (int i = 0; i < Model.AllCountries.Count; i++)
+    {
+        if (Model.Filter != null)
+        {
+            if (Model.AllCountries[i].Name.Contains(Model.Filter, StringComparison.OrdinalIgnoreCase))
+            {
+                <partial name="_CountryData" model="Model.AllCountries[i]" />
+            }
+        }
+        else
+        {
+        <partial name="_CountryData" model="Model.AllCountries[i]" />
+        }
+    }
+
+ }
+
+

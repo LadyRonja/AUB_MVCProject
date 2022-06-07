@@ -7,20 +7,23 @@ using WebProject.Data;
 
 namespace WebProject.Models
 {
-    public class CreatePersonViewModel
+    public class PersonFactory
     {
 
         [Required]
         public string Name { get; set; }
         [Required]
-        public string City { get; set; }
+        public string CityID { get; set; }
         [Required]
         public string Number { get; set; }
 
         public void AddPersonToDataBase(ApplicationDbContext context)
         {
-            Person personToAdd = new Person(Name, City, Number);
-            context.Add(personToAdd);
+            Person personToAdd = new Person {   Name = this.Name,
+                                                CityID = Guid.Parse(this.CityID),
+                                                PhoneNumber = this.Number };
+
+            context.People.Add(personToAdd);
             context.SaveChanges();
         }
     }

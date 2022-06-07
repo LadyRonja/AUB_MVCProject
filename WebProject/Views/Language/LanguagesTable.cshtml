@@ -1,0 +1,96 @@
+﻿@using WebProject.Models
+
+@model LanguagesViewModel
+
+<h2>Language Index</h2>
+
+
+<hr />
+@* Information needed to create a new language: name*@
+<form asp-controller="Language" asp-action="CreateLanguage" method="post">
+    <table>
+        <tr>
+            <td><label asp-for="LanguageFactory.Name"></label></td>
+        </tr>
+        <tr>
+            <td>  <input asp-for="LanguageFactory.Name" />  </td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Create Language" /></td>
+    </table>
+</form>
+<hr />
+
+@* Information needed to connect a person and a language: PersonID, and LanguageID*@
+<form asp-controller="Language" asp-action="ConnectSpeakerAndLanguage" method="post">
+    <table>
+        <tr>
+            <td><label asp-for="Connector.PersonID"></label></td>
+            <td><label asp-for="Connector.LanguageID"></label></td>
+        </tr>
+        <tr>
+            <td>  <input asp-for="Connector.PersonID" />  </td>
+            <td>  <input asp-for="Connector.LanguageID" />  </td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Teach Language" /></td>
+    </table>
+</form>
+
+<hr />
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            Name
+        </div>
+        <div class="col-sm">
+            ID
+        </div>
+        <div class="col-sm">
+            Speakers
+        </div>
+        <div class="col-sm">
+            Vaporise the Rosetta Stone
+        </div>
+    </div>
+</div>
+
+<hr />
+
+@{
+    for (int i = 0; i < Model.AllLanguage.Count; i++)
+    {
+        <div class="container">
+            <div class="row">
+                <div class="col-sm">
+                    @Model.AllLanguage[i].Name
+                </div>
+                <div class="col-sm">
+                    @Model.AllLanguage[i].ID
+                </div>
+                <div class="col-sm">
+                    @if (Model.AllLanguage[i].Speakers != null)
+                    {
+                        for (int s = 0; s < Model.AllLanguage[i].Speakers.Count; s++)
+                        {
+                            if (s == Model.AllLanguage[i].Speakers.Count - 1)
+                            {
+                                <i>@Model.AllLanguage[i].Speakers[s].Speaker.Name </i>
+                            }
+                            else
+                            {
+                                <i>@Model.AllLanguage[i].Speakers[s].Speaker.Name, </i>
+                            }
+                        }
+                    }
+                </div>
+                <div class="col-sm">
+                    @Html.ActionLink("Forget", "RemoveLanguage", new { languageID = Model.AllLanguage[i].ID })
+                </div>
+            </div>
+        </div>
+    }
+
+}
+
+

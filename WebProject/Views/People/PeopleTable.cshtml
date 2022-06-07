@@ -18,35 +18,56 @@
     <table>
         <tr>
             <td><label asp-for="PersonFactory.Name"></label></td>
-            <td> <label asp-for="PersonFactory.City"></label> </td>
+            <td> <label asp-for="PersonFactory.CityID"></label> </td>
             <td> <label asp-for="PersonFactory.Number"></label></td>
         </tr>
         <tr>
             <td>  <input asp-for="PersonFactory.Name" />  </td>
-            <td> <input asp-for="PersonFactory.City" /> </td>
+            <td> <input asp-for="PersonFactory.CityID" /> </td>
             <td><input asp-for="PersonFactory.Number" /> </td>
         </tr>
         <tr>
-            <td><input type="submit" value="CreatePerson" /></td>
+            <td><input type="submit" value="Create Person" /></td>
     </table>
 </form>
 
 
 <hr />
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            Name
+        </div>        
+        <div class="col-sm">
+            ID
+        </div>
+        <div class="col-sm">
+            City(ID)
+        </div>
+        <div class="col-sm">
+            Number
+        </div>
+        <div class="col-sm">
+            Languages
+        </div>
+        <div class="col-sm">
+            Remove
+        </div>
+    </div>
+</div>
 
-    @{ 
-        for (int i = 0; i < Model.AllPeople.Count; i++){
-            if (Model.Filter != null)
-            {
-                if (Model.AllPeople[i].Name.Contains(Model.Filter, StringComparison.OrdinalIgnoreCase) ||
-                    Model.AllPeople[i].City.Contains(Model.Filter, StringComparison.OrdinalIgnoreCase))
+<hr />
+
+@{ for (int i = 0; i < Model.AllPeople.Count; i++)
                 {
-                    <partial name="_PersonData" model="Model.AllPeople[i]" />
-                }
-            }
-            else
-            {
-                <partial name="_PersonData" model="Model.AllPeople[i]" />
-            }
-        } 
-    }
+                    if (Model.Filter != null)
+                    {
+                        if (Model.AllPeople[i].Name.Contains(Model.Filter, StringComparison.OrdinalIgnoreCase) ||
+                            Model.AllPeople[i].City.Name.Contains(Model.Filter, StringComparison.OrdinalIgnoreCase))
+                        {
+    <partial name="_PersonData" model="Model.AllPeople[i]" /> }
+                    }
+                    else
+                    {
+    <partial name="_PersonData" model="Model.AllPeople[i]" /> }
+                } }

@@ -1,0 +1,32 @@
+﻿@using WebProject.Models;
+@model Country
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            @Model.Name
+        </div>
+        <div class="col-sm">
+            @Model.ID
+        </div>
+        <div class="col-sm">
+            @if (Model.Cities != null)
+            {
+                for (int c = 0; c < Model.Cities.Count; c++)
+                {
+                    if (c == Model.Cities.Count - 1)
+                    {
+                        <i>@Model.Cities[c].Name </i>
+                    }
+                    else
+                    {
+                        <i>@Model.Cities[c].Name, </i>
+                    }
+                }
+            }
+        </div>
+        <div class="col-sm">
+            @Html.ActionLink("Xnopyt", "RemoveCountry", new { countryID = Model.ID })
+        </div>
+    </div>
+</div>
