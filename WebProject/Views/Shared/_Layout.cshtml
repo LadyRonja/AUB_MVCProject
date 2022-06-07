@@ -19,6 +19,7 @@
                 <li>@Html.ActionLink("Countries", "Index", "Country")</li>
                 <li>@Html.ActionLink("Languages", "Index", "Language")</li>
             </ul>
+            <partial name="_LoginPartial" />
         </nav>
         </header>
         <div>
@@ -30,5 +31,6 @@
             <p>Developed by <a href="https://github.com/LadyRonja" target="_blank">LadyRonja</a></p>
             <p>Last accessed: @DateTime.Now.ToString("yyyy-MM-dd")</p>
         </footer>
+        @RenderSection("Scripts", required: false)
     </body>
 </html> 

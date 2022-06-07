@@ -19,6 +19,202 @@ namespace WebProject.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
+
+                    b.Property<string>("NormalizedName")
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasName("RoleNameIndex")
+                        .HasFilter("[NormalizedName] IS NOT NULL");
+
+                    b.ToTable("AspNetRoles");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RoleId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetRoleClaims");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserClaims");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                {
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProviderKey")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProviderDisplayName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("LoginProvider", "ProviderKey");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserLogins");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("RoleId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetUserRoles");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserId", "LoginProvider", "Name");
+
+                    b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("WebProject.Models.ApplicationUser", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AspNetUsers");
+                });
+
             modelBuilder.Entity("WebProject.Models.City", b =>
                 {
                     b.Property<Guid>("ID")
@@ -41,38 +237,38 @@ namespace WebProject.Migrations
                     b.HasData(
                         new
                         {
-                            ID = new Guid("0f3d34f5-0f4c-4561-8488-9cb025083f19"),
-                            CountryID = new Guid("1977b703-ada7-4c6b-9402-d6f05d9f2c12"),
+                            ID = new Guid("c0934d01-eb93-4d07-af96-972526b3733d"),
+                            CountryID = new Guid("9bbe248d-577b-4ba7-ad38-f10a110a5e5b"),
                             Name = "Los Angeles"
                         },
                         new
                         {
-                            ID = new Guid("544b6d6c-9a82-4b8c-9e82-db46606fb06a"),
-                            CountryID = new Guid("1977b703-ada7-4c6b-9402-d6f05d9f2c12"),
+                            ID = new Guid("1065337c-9786-493a-af84-665504b4188e"),
+                            CountryID = new Guid("9bbe248d-577b-4ba7-ad38-f10a110a5e5b"),
                             Name = "Chicago"
                         },
                         new
                         {
-                            ID = new Guid("25cb535d-bbe1-4277-a826-402ea33b6602"),
-                            CountryID = new Guid("1977b703-ada7-4c6b-9402-d6f05d9f2c12"),
+                            ID = new Guid("2e00bcb5-2ef0-4285-a566-61f6d6e00248"),
+                            CountryID = new Guid("9bbe248d-577b-4ba7-ad38-f10a110a5e5b"),
                             Name = "Springfield"
                         },
                         new
                         {
-                            ID = new Guid("437fca0c-324f-41d3-853c-ab143a7d9c14"),
-                            CountryID = new Guid("d91e0afc-5d81-4a7a-9230-ea07f9acf45a"),
+                            ID = new Guid("248a564d-1e7a-4e80-89bd-473436a1de1b"),
+                            CountryID = new Guid("84c8c820-520b-47f6-a200-10c1a4a514ab"),
                             Name = "Dreamland"
                         },
                         new
                         {
-                            ID = new Guid("96abf55e-3257-4a13-920a-dcf6e0d90cd5"),
-                            CountryID = new Guid("808a370a-9de2-41b7-83d7-57ad76b26719"),
+                            ID = new Guid("b11cfbec-0cde-4242-bc1b-b3040c4d008c"),
+                            CountryID = new Guid("302373eb-5d98-4965-a5ea-ec7d2d30265f"),
                             Name = "Borås"
                         },
                         new
                         {
-                            ID = new Guid("c796d9df-09f5-4788-8724-e97c0006cff9"),
-                            CountryID = new Guid("1977b703-ada7-4c6b-9402-d6f05d9f2c12"),
+                            ID = new Guid("49b0612d-af88-49e6-9d28-6076fee4351c"),
+                            CountryID = new Guid("9bbe248d-577b-4ba7-ad38-f10a110a5e5b"),
                             Name = "Albuquerque"
                         });
                 });
@@ -94,17 +290,17 @@ namespace WebProject.Migrations
                     b.HasData(
                         new
                         {
-                            ID = new Guid("808a370a-9de2-41b7-83d7-57ad76b26719"),
+                            ID = new Guid("302373eb-5d98-4965-a5ea-ec7d2d30265f"),
                             Name = "Sweden"
                         },
                         new
                         {
-                            ID = new Guid("d91e0afc-5d81-4a7a-9230-ea07f9acf45a"),
+                            ID = new Guid("84c8c820-520b-47f6-a200-10c1a4a514ab"),
                             Name = "Germany"
                         },
                         new
                         {
-                            ID = new Guid("1977b703-ada7-4c6b-9402-d6f05d9f2c12"),
+                            ID = new Guid("9bbe248d-577b-4ba7-ad38-f10a110a5e5b"),
                             Name = "USA"
                         });
                 });
@@ -126,22 +322,22 @@ namespace WebProject.Migrations
                     b.HasData(
                         new
                         {
-                            ID = new Guid("e91c6fbb-472e-4776-a47b-3d3683cc2320"),
+                            ID = new Guid("db9ced18-bee1-4c66-87d7-2d3ad54160c9"),
                             Name = "English"
                         },
                         new
                         {
-                            ID = new Guid("93856c53-5513-4a6c-8a77-7c961bfab4bb"),
+                            ID = new Guid("92ed3a0a-f30f-40fb-ac84-96f776f2b223"),
                             Name = "Swedish"
                         },
                         new
                         {
-                            ID = new Guid("7a33a7d4-3967-418b-b593-ba4e89fa26c9"),
+                            ID = new Guid("97eeb315-d320-41e5-ad5c-86261e56f944"),
                             Name = "German"
                         },
                         new
                         {
-                            ID = new Guid("6b6cb417-e1ec-4b3b-ab87-4d660456b696"),
+                            ID = new Guid("fbf73f92-08ac-4655-8947-b92ab9381a1c"),
                             Name = "C#"
                         });
                 });
@@ -163,48 +359,48 @@ namespace WebProject.Migrations
                     b.HasData(
                         new
                         {
-                            LanguageID = new Guid("e91c6fbb-472e-4776-a47b-3d3683cc2320"),
-                            PersonID = new Guid("44e00435-f865-4162-ba90-167446fe49a8")
+                            LanguageID = new Guid("db9ced18-bee1-4c66-87d7-2d3ad54160c9"),
+                            PersonID = new Guid("e23d003b-c015-4fc8-bf6d-519b8225d7d8")
                         },
                         new
                         {
-                            LanguageID = new Guid("e91c6fbb-472e-4776-a47b-3d3683cc2320"),
-                            PersonID = new Guid("800ee376-e910-45d4-9441-b87d031f4aa1")
+                            LanguageID = new Guid("db9ced18-bee1-4c66-87d7-2d3ad54160c9"),
+                            PersonID = new Guid("5fae0c20-903a-4280-8e02-a2ff7597a60d")
                         },
                         new
                         {
-                            LanguageID = new Guid("e91c6fbb-472e-4776-a47b-3d3683cc2320"),
-                            PersonID = new Guid("b5a2fb0c-054a-4366-87b4-cc462b0b4ff8")
+                            LanguageID = new Guid("db9ced18-bee1-4c66-87d7-2d3ad54160c9"),
+                            PersonID = new Guid("4c6fe5a1-9b29-4c5a-935a-68c49b1c9b99")
                         },
                         new
                         {
-                            LanguageID = new Guid("7a33a7d4-3967-418b-b593-ba4e89fa26c9"),
-                            PersonID = new Guid("9ee65d68-80f5-4945-819d-b74029aba764")
+                            LanguageID = new Guid("97eeb315-d320-41e5-ad5c-86261e56f944"),
+                            PersonID = new Guid("6e91f2e2-36ec-4147-8a9d-d36dcdd851f0")
                         },
                         new
                         {
-                            LanguageID = new Guid("6b6cb417-e1ec-4b3b-ab87-4d660456b696"),
-                            PersonID = new Guid("9ee65d68-80f5-4945-819d-b74029aba764")
+                            LanguageID = new Guid("fbf73f92-08ac-4655-8947-b92ab9381a1c"),
+                            PersonID = new Guid("6e91f2e2-36ec-4147-8a9d-d36dcdd851f0")
                         },
                         new
                         {
-                            LanguageID = new Guid("e91c6fbb-472e-4776-a47b-3d3683cc2320"),
-                            PersonID = new Guid("173221c4-7d98-400f-8ef3-e0c5977abd4c")
+                            LanguageID = new Guid("db9ced18-bee1-4c66-87d7-2d3ad54160c9"),
+                            PersonID = new Guid("cd7c5767-8cc0-4d9b-a7fe-363cd6095580")
                         },
                         new
                         {
-                            LanguageID = new Guid("7a33a7d4-3967-418b-b593-ba4e89fa26c9"),
-                            PersonID = new Guid("173221c4-7d98-400f-8ef3-e0c5977abd4c")
+                            LanguageID = new Guid("97eeb315-d320-41e5-ad5c-86261e56f944"),
+                            PersonID = new Guid("cd7c5767-8cc0-4d9b-a7fe-363cd6095580")
                         },
                         new
                         {
-                            LanguageID = new Guid("93856c53-5513-4a6c-8a77-7c961bfab4bb"),
-                            PersonID = new Guid("173221c4-7d98-400f-8ef3-e0c5977abd4c")
+                            LanguageID = new Guid("92ed3a0a-f30f-40fb-ac84-96f776f2b223"),
+                            PersonID = new Guid("cd7c5767-8cc0-4d9b-a7fe-363cd6095580")
                         },
                         new
                         {
-                            LanguageID = new Guid("e91c6fbb-472e-4776-a47b-3d3683cc2320"),
-                            PersonID = new Guid("30161aef-c5c4-4bb2-94b3-4a0a1a88441b")
+                            LanguageID = new Guid("db9ced18-bee1-4c66-87d7-2d3ad54160c9"),
+                            PersonID = new Guid("cb60f98e-2c8d-4b63-8d55-1c3162108f13")
                         });
                 });
 
@@ -234,46 +430,97 @@ namespace WebProject.Migrations
                     b.HasData(
                         new
                         {
-                            ID = new Guid("44e00435-f865-4162-ba90-167446fe49a8"),
-                            CityID = new Guid("0f3d34f5-0f4c-4561-8488-9cb025083f19"),
+                            ID = new Guid("e23d003b-c015-4fc8-bf6d-519b8225d7d8"),
+                            CityID = new Guid("c0934d01-eb93-4d07-af96-972526b3733d"),
                             Name = "Jane Doe",
                             PhoneNumber = "555-123 45"
                         },
                         new
                         {
-                            ID = new Guid("800ee376-e910-45d4-9441-b87d031f4aa1"),
-                            CityID = new Guid("544b6d6c-9a82-4b8c-9e82-db46606fb06a"),
+                            ID = new Guid("5fae0c20-903a-4280-8e02-a2ff7597a60d"),
+                            CityID = new Guid("1065337c-9786-493a-af84-665504b4188e"),
                             Name = "John Doe",
                             PhoneNumber = "555-123 45"
                         },
                         new
                         {
-                            ID = new Guid("b5a2fb0c-054a-4366-87b4-cc462b0b4ff8"),
-                            CityID = new Guid("25cb535d-bbe1-4277-a826-402ea33b6602"),
+                            ID = new Guid("4c6fe5a1-9b29-4c5a-935a-68c49b1c9b99"),
+                            CityID = new Guid("2e00bcb5-2ef0-4285-a566-61f6d6e00248"),
                             Name = "Marge Simpson",
                             PhoneNumber = "939-555-0113"
                         },
                         new
                         {
-                            ID = new Guid("9ee65d68-80f5-4945-819d-b74029aba764"),
-                            CityID = new Guid("437fca0c-324f-41d3-853c-ab143a7d9c14"),
+                            ID = new Guid("6e91f2e2-36ec-4147-8a9d-d36dcdd851f0"),
+                            CityID = new Guid("248a564d-1e7a-4e80-89bd-473436a1de1b"),
                             Name = "Somna Sculpt",
                             PhoneNumber = "1-555-766728578"
                         },
                         new
                         {
-                            ID = new Guid("173221c4-7d98-400f-8ef3-e0c5977abd4c"),
-                            CityID = new Guid("96abf55e-3257-4a13-920a-dcf6e0d90cd5"),
+                            ID = new Guid("cd7c5767-8cc0-4d9b-a7fe-363cd6095580"),
+                            CityID = new Guid("b11cfbec-0cde-4242-bc1b-b3040c4d008c"),
                             Name = "Anthony Hopkins",
                             PhoneNumber = "555-6162"
                         },
                         new
                         {
-                            ID = new Guid("30161aef-c5c4-4bb2-94b3-4a0a1a88441b"),
-                            CityID = new Guid("c796d9df-09f5-4788-8724-e97c0006cff9"),
+                            ID = new Guid("cb60f98e-2c8d-4b63-8d55-1c3162108f13"),
+                            CityID = new Guid("49b0612d-af88-49e6-9d28-6076fee4351c"),
                             Name = "Saul Goodman",
                             PhoneNumber = "505-842-5662"
                         });
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                {
+                    b.HasOne("WebProject.Models.ApplicationUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                {
+                    b.HasOne("WebProject.Models.ApplicationUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WebProject.Models.ApplicationUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.HasOne("WebProject.Models.ApplicationUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("WebProject.Models.City", b =>
