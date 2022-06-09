@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using WebProject.Models;
@@ -267,6 +268,47 @@ namespace WebProject.Data
                 );
             #endregion
 
+            // --- Seed Roles and an Admin user
+            string adminRoleID = Guid.NewGuid().ToString();
+            string userRoleID = Guid.NewGuid().ToString();
+            string adminUserID = Guid.NewGuid().ToString();
+
+            modelBuilder.Entity<IdentityRole>().HasData(
+                new IdentityRole { 
+                    Id = adminRoleID,
+                    Name = "Admin",
+                    NormalizedName = "ADMIN"
+                },
+                new IdentityRole
+                {
+                    Id = userRoleID,
+                    Name = "User",
+                    NormalizedName = "USER"
+                });
+
+            PasswordHasher<ApplicationUser> hasher = new PasswordHasher<ApplicationUser>();
+
+            modelBuilder.Entity<ApplicationUser>().HasData(
+                new ApplicationUser
+                {
+                    Id = adminUserID,
+                    Email = "admin@admin.com",
+                    NormalizedEmail = "ADMIN@ADMIN.COM",
+                    UserName = "admin@admin.com",
+                    NormalizedUserName = "ADMIN@ADMIN.COM",
+                    FirstName = "Admin",
+                    LastName = "Adminsson",
+                    BirthDate = DateTime.MinValue,
+                    PasswordHash = hasher.HashPassword(null, "password")
+                });
+
+            modelBuilder.Entity<IdentityUserRole<string>>().HasData(
+                new IdentityUserRole<string>
+                {
+                    RoleId = adminRoleID,
+                    UserId = adminUserID
+                });
+
         }
 
         public DbSet<Person> People { get; set; }
@@ -274,6 +316,5 @@ namespace WebProject.Data
         public DbSet<Country> Countries { get; set; }
         public DbSet<Language> Languages { get; set; }
         public DbSet<LanguagePerson> LanguageSpeakers { get; set; }
-        public DbSet<ApplicationUser> Users { get; set; }
     }
 }

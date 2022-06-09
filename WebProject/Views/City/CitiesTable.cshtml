@@ -21,7 +21,7 @@
         </tr>
         <tr>
             <td>  <input asp-for="CityFactory.Name" />  </td>
-            <td> <input asp-for="CityFactory.CountryID" /> </td>
+            <td> <select asp-for="CityFactory.CountryID" asp-items="ViewBag.Countries"></select> </td>
         </tr>
         <tr>
             <td><input type="submit" value="Create City" /></td>
@@ -39,6 +39,9 @@
         </div>
         <div class="col-sm">
             Country(ID)
+        </div>
+        <div class="col-sm">
+            Edit
         </div>
         <div class="col-sm">
             Remove city and citizens
@@ -64,6 +67,9 @@
                     </div>
                     <div class="col-sm">
                         @Model.AllCities[i].Country.Name (@Model.AllCities[i].CountryID)
+                    </div>                    
+                    <div class="col-sm">
+                        @Html.ActionLink("Edit", "CityEditor", new { cityID = Model.AllCities[i].ID })
                     </div>
                     <div class="col-sm">
                         @Html.ActionLink("Nuke", "RemoveCity", new { cityID = Model.AllCities[i].ID })
@@ -84,6 +90,9 @@
                 </div>
                 <div class="col-sm">
                     @Model.AllCities[i].Country.Name (@Model.AllCities[i].CountryID)
+                </div>
+                <div class="col-sm">
+                    @Html.ActionLink("Edit", "CityEditor", new { cityID = Model.AllCities[i].ID })
                 </div>
                 <div class="col-sm">
                     @Html.ActionLink("Nuke", "RemoveCity", new { cityID = Model.AllCities[i].ID })

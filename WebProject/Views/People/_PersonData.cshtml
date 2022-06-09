@@ -24,15 +24,20 @@
                     if (i == Model.Languages.Count - 1)
                     {
     <i>@Model.Languages[i].Language.Name</i> }
-                        else
-                        {
-    <i>@Model.Languages[i].Language.Name,</i>                    }
-                    }
-                }
-
+else
+{
+    <i>@Model.Languages[i].Language.Name,</i>}
+}
+}
         </div>
         <div class="col-sm">
-            @Html.ActionLink("Remove", "RemovePerson", new { personID = Model.ID })
+            @Html.ActionLink("Edit", "PersonEditor", new { personID = Model.ID })
         </div>
+        @if (User.IsInRole("Admin"))
+        {
+    <div class="col-sm">
+        @Html.ActionLink("Remove", "RemovePerson", new { personID = Model.ID })
+    </div>}
+
     </div>
 </div>

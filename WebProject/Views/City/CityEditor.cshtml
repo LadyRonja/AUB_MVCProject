@@ -1,0 +1,47 @@
+﻿@using WebProject.Models
+@model City
+
+<h2>@Model.ID</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <b>Name</b>
+        </div>
+        <div class="col-sm">
+            <b>Country</b>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            @Model.Name
+        </div>
+        <div class="col-sm">
+            @Model.Country.Name (@Model.CountryID)
+        </div>
+    </div>
+</div>
+<hr />
+<form asp-controller="City" asp-action="EditCity" method="post">
+    <div class="container">
+        @* Without this hidden input field the model recieved by the controller will have ID == 0000.0000.0000.0000
+            Working theory is that the passed model is a new opbject with the members determined by the data from the form*@
+        <input asp-for="@Model.ID" type="hidden" value="@Model.ID" />
+        <div class="row">
+            <div class="col-sm">
+                <input asp-for="@Model.Name" />
+            </div>
+            <div class="col-sm">
+                <select asp-for="@Model.CountryID" asp-items="ViewBag.Countries"></select>
+            </div>
+        </div>
+    </div>
+    <span> <input type="submit" value="Save Changes" /> </span>
+</form>
+
+
+<form asp-controller="City" asp-action="Index" method="post">
+    <span> <input type="submit" value="Discard Changes" /> </span>
+</form>

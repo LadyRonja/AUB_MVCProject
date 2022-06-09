@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +9,7 @@ using WebProject.Models;
 
 namespace WebProject.Controllers
 {
+    [Authorize]
     public class PeopleController : Controller
     {
         private static PeopleViewModel viewModel;
@@ -43,7 +46,36 @@ namespace WebProject.Controllers
 
             UpdateViewmodelLangauges();
 
+            // Settings dropdown list option for cities
+            ViewBag.Cities = new SelectList(_context.Cities.ToList(), "ID", "Name");
+
             return View("PeopleTable", viewModel);
+        }
+
+        public IActionResult PersonEditor(Guid personID)
+        {
+            Person personToEdit = viewModel.AllPeople.First(p => p.ID == personID);
+
+            // Settings dropdown list option for cities
+            ViewBag.Cities = new SelectList(_context.Cities.ToList(), "ID", "Name");
+
+            return View(personToEdit);
+        }
+
+        [HttpPost]
+        public IActionResult EditPerson(Person model)
+        {
+            if (ModelState.IsValid)
+            {
+                Person personToUpdate = _context.People.Find(model.ID);
+                personToUpdate.Name = model.Name;
+                personToUpdate.CityID = model.CityID;
+                personToUpdate.PhoneNumber = model.PhoneNumber;
+
+                _context.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
         }
 
         [HttpPost]
@@ -70,6 +102,7 @@ namespace WebProject.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult RemovePerson(Guid personID)
         {
             var personToRemove = _context.People.Find(personID);

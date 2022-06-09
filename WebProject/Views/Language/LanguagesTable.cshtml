@@ -29,8 +29,8 @@
             <td><label asp-for="Connector.LanguageID"></label></td>
         </tr>
         <tr>
-            <td>  <input asp-for="Connector.PersonID" />  </td>
-            <td>  <input asp-for="Connector.LanguageID" />  </td>
+            <td> <select asp-for="Connector.PersonID" asp-items="ViewBag.People"></select> </td>
+            <td> <select asp-for="Connector.LanguageID" asp-items="ViewBag.Languages"></select> </td>
         </tr>
         <tr>
             <td><input type="submit" value="Teach Language" /></td>

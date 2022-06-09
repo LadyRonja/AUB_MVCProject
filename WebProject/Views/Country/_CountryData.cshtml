@@ -16,14 +16,15 @@
                 {
                     if (c == Model.Cities.Count - 1)
                     {
-                        <i>@Model.Cities[c].Name </i>
-                    }
-                    else
-                    {
-                        <i>@Model.Cities[c].Name, </i>
+    <i>@Model.Cities[c].Name </i> }
+                        else
+                        {
+    <i>@Model.Cities[c].Name, </i>                    }
                     }
                 }
-            }
+        </div>        
+        <div class="col-sm">
+            @Html.ActionLink("Edit", "CountryEditor", new { countryID = Model.ID })
         </div>
         <div class="col-sm">
             @Html.ActionLink("Xnopyt", "RemoveCountry", new { countryID = Model.ID })

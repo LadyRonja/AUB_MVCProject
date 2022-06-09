@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +9,8 @@ using WebProject.Models;
 
 namespace WebProject.Controllers
 {
+
+    [Authorize(Roles = "Admin")]
     public class CityController : Controller
     {
 
@@ -40,7 +44,35 @@ namespace WebProject.Controllers
                 viewModel.AllCities[i].Country = _context.Countries.Find(viewModel.AllCities[i].CountryID);
             }
 
+            // Settings dropdown list option for countries
+            ViewBag.Countries = new SelectList(_context.Countries.ToList(), "ID", "Name");
+
             return View("CitiesTable", viewModel);
+        }
+
+        public IActionResult CityEditor(Guid cityID)
+        {
+            City cityToEdit = viewModel.AllCities.First(c => c.ID == cityID);
+
+            // Settings dropdown list option for cities
+            ViewBag.Countries = new SelectList(_context.Countries.ToList(), "ID", "Name");
+
+            return View(cityToEdit);
+        }
+
+        [HttpPost]
+        public IActionResult EditCity(City model)
+        {
+            if (ModelState.IsValid)
+            {
+                City cityToEdit = _context.Cities.Find(model.ID);
+                cityToEdit.Name = model.Name;
+                cityToEdit.CountryID = model.CountryID;
+
+                _context.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
         }
 
         [HttpPost]

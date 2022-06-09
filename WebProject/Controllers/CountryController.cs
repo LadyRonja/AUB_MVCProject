@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,8 @@ using WebProject.Models;
 
 namespace WebProject.Controllers
 {
+
+    [Authorize(Roles = "Admin")]
     public class CountryController : Controller
     {
 
@@ -34,6 +37,27 @@ namespace WebProject.Controllers
             UpdateViewmodelCities();
 
             return View("Countriestable", viewModel);
+        }
+
+        public IActionResult CountryEditor(Guid countryID)
+        {
+            Country countryToEdit = viewModel.AllCountries.First(c => c.ID == countryID);
+
+            return View(countryToEdit);
+        }
+
+        [HttpPost]
+        public IActionResult EditCountry(Country model)
+        {
+            if (ModelState.IsValid)
+            {
+                Country countryToUpdate = _context.Countries.Find(model.ID);
+                countryToUpdate.Name = model.Name;
+
+                _context.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
         }
 
         [HttpPost]

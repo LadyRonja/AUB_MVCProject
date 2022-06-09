@@ -23,7 +23,7 @@
         </tr>
         <tr>
             <td>  <input asp-for="PersonFactory.Name" />  </td>
-            <td> <input asp-for="PersonFactory.CityID" /> </td>
+            <td> <select asp-for="PersonFactory.CityID" asp-items="ViewBag.Cities"></select> </td>
             <td><input asp-for="PersonFactory.Number" /> </td>
         </tr>
         <tr>
@@ -37,7 +37,7 @@
     <div class="row">
         <div class="col-sm">
             Name
-        </div>        
+        </div>
         <div class="col-sm">
             ID
         </div>
@@ -51,8 +51,13 @@
             Languages
         </div>
         <div class="col-sm">
-            Remove
+            Edit
         </div>
+        @if (User.IsInRole("Admin"))
+        {
+    <div class="col-sm">
+        Remove
+    </div>            }
     </div>
 </div>
 

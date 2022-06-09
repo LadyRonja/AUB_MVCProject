@@ -208,3 +208,7 @@ D:\AUB\MVC\WebProject\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_Valida
 D:\AUB\MVC\WebProject\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ViewImports.cshtml.g.cs
 D:\AUB\MVC\WebProject\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ViewStart.cshtml.g.cs
 D:\AUB\MVC\WebProject\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_LoginPartial.cshtml.g.cs
+D:\AUB\MVC\WebProject\obj\Debug\netcoreapp3.1\Razor\Views\Role\RolesTable.cshtml.g.cs
+D:\AUB\MVC\WebProject\obj\Debug\netcoreapp3.1\Razor\Views\People\PersonEditor.cshtml.g.cs
+D:\AUB\MVC\WebProject\obj\Debug\netcoreapp3.1\Razor\Views\City\CityEditor.cshtml.g.cs
+D:\AUB\MVC\WebProject\obj\Debug\netcoreapp3.1\Razor\Views\Country\CountryEditor.cshtml.g.cs

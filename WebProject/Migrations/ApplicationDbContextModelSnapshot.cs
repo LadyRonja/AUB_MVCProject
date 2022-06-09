@@ -44,6 +44,22 @@ namespace WebProject.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "05fe6198-1ced-443a-ad2c-5d9477df7449",
+                            ConcurrencyStamp = "04ac35fc-94ad-4960-8e7d-b422610f7567",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = "c6810e1a-b13a-433a-bf92-b04ee782ece9",
+                            ConcurrencyStamp = "b7af16e5-0678-4ed2-ab80-69315f98f99a",
+                            Name = "User",
+                            NormalizedName = "USER"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -129,6 +145,13 @@ namespace WebProject.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "62650392-e3a3-4208-9df5-10ff008cf831",
+                            RoleId = "05fe6198-1ced-443a-ad2c-5d9477df7449"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -158,6 +181,9 @@ namespace WebProject.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("BirthDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
@@ -168,6 +194,12 @@ namespace WebProject.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -213,6 +245,27 @@ namespace WebProject.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "62650392-e3a3-4208-9df5-10ff008cf831",
+                            AccessFailedCount = 0,
+                            BirthDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ConcurrencyStamp = "b4e6cb0c-ed43-4aff-a71a-5772968767d7",
+                            Email = "admin@admin.com",
+                            EmailConfirmed = false,
+                            FirstName = "Admin",
+                            LastName = "Adminsson",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@ADMIN.COM",
+                            NormalizedUserName = "ADMIN@ADMIN.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAENtu7BTQ/SacZMMKEwhax71NoYSD7HCxsY6dq7FBec+5lsBV5zxZ2IEt0+pjf+AyHw==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "8b20eacd-9bfc-48d3-850a-41529925cac2",
+                            TwoFactorEnabled = false,
+                            UserName = "admin@admin.com"
+                        });
                 });
 
             modelBuilder.Entity("WebProject.Models.City", b =>
@@ -237,38 +290,38 @@ namespace WebProject.Migrations
                     b.HasData(
                         new
                         {
-                            ID = new Guid("c0934d01-eb93-4d07-af96-972526b3733d"),
-                            CountryID = new Guid("9bbe248d-577b-4ba7-ad38-f10a110a5e5b"),
+                            ID = new Guid("adc5c322-8f30-41f0-a472-a2fc6a7b56cb"),
+                            CountryID = new Guid("45452a84-d7cc-48de-8dfb-2818b9471bce"),
                             Name = "Los Angeles"
                         },
                         new
                         {
-                            ID = new Guid("1065337c-9786-493a-af84-665504b4188e"),
-                            CountryID = new Guid("9bbe248d-577b-4ba7-ad38-f10a110a5e5b"),
+                            ID = new Guid("8f9cee4e-79f5-46aa-ad01-8d922479f497"),
+                            CountryID = new Guid("45452a84-d7cc-48de-8dfb-2818b9471bce"),
                             Name = "Chicago"
                         },
                         new
                         {
-                            ID = new Guid("2e00bcb5-2ef0-4285-a566-61f6d6e00248"),
-                            CountryID = new Guid("9bbe248d-577b-4ba7-ad38-f10a110a5e5b"),
+                            ID = new Guid("529b7340-0ded-4d89-ace3-17bf1a275181"),
+                            CountryID = new Guid("45452a84-d7cc-48de-8dfb-2818b9471bce"),
                             Name = "Springfield"
                         },
                         new
                         {
-                            ID = new Guid("248a564d-1e7a-4e80-89bd-473436a1de1b"),
-                            CountryID = new Guid("84c8c820-520b-47f6-a200-10c1a4a514ab"),
+                            ID = new Guid("3f8b480c-3913-4508-96ad-4967133cb3b7"),
+                            CountryID = new Guid("93044ce3-77d4-453f-95ad-648ba9a4a44a"),
                             Name = "Dreamland"
                         },
                         new
                         {
-                            ID = new Guid("b11cfbec-0cde-4242-bc1b-b3040c4d008c"),
-                            CountryID = new Guid("302373eb-5d98-4965-a5ea-ec7d2d30265f"),
+                            ID = new Guid("7ad71a68-8329-4e80-aae0-2724aa09df11"),
+                            CountryID = new Guid("022c8a26-b1e3-4d0b-af94-8569d47e61fe"),
                             Name = "Borås"
                         },
                         new
                         {
-                            ID = new Guid("49b0612d-af88-49e6-9d28-6076fee4351c"),
-                            CountryID = new Guid("9bbe248d-577b-4ba7-ad38-f10a110a5e5b"),
+                            ID = new Guid("00a0c2df-0487-46a5-ac57-37b2807bf600"),
+                            CountryID = new Guid("45452a84-d7cc-48de-8dfb-2818b9471bce"),
                             Name = "Albuquerque"
                         });
                 });
@@ -290,17 +343,17 @@ namespace WebProject.Migrations
                     b.HasData(
                         new
                         {
-                            ID = new Guid("302373eb-5d98-4965-a5ea-ec7d2d30265f"),
+                            ID = new Guid("022c8a26-b1e3-4d0b-af94-8569d47e61fe"),
                             Name = "Sweden"
                         },
                         new
                         {
-                            ID = new Guid("84c8c820-520b-47f6-a200-10c1a4a514ab"),
+                            ID = new Guid("93044ce3-77d4-453f-95ad-648ba9a4a44a"),
                             Name = "Germany"
                         },
                         new
                         {
-                            ID = new Guid("9bbe248d-577b-4ba7-ad38-f10a110a5e5b"),
+                            ID = new Guid("45452a84-d7cc-48de-8dfb-2818b9471bce"),
                             Name = "USA"
                         });
                 });
@@ -322,22 +375,22 @@ namespace WebProject.Migrations
                     b.HasData(
                         new
                         {
-                            ID = new Guid("db9ced18-bee1-4c66-87d7-2d3ad54160c9"),
+                            ID = new Guid("4468e7d0-30b0-4eb8-acee-f85f2070e892"),
                             Name = "English"
                         },
                         new
                         {
-                            ID = new Guid("92ed3a0a-f30f-40fb-ac84-96f776f2b223"),
+                            ID = new Guid("8c659377-b25f-41d1-b355-f1f2dc08bd59"),
                             Name = "Swedish"
                         },
                         new
                         {
-                            ID = new Guid("97eeb315-d320-41e5-ad5c-86261e56f944"),
+                            ID = new Guid("ce71eef1-0fe8-495d-a8ff-e6e10713e6de"),
                             Name = "German"
                         },
                         new
                         {
-                            ID = new Guid("fbf73f92-08ac-4655-8947-b92ab9381a1c"),
+                            ID = new Guid("5ee2ca5a-f2f5-40e5-9544-7bcca5519709"),
                             Name = "C#"
                         });
                 });
@@ -359,48 +412,48 @@ namespace WebProject.Migrations
                     b.HasData(
                         new
                         {
-                            LanguageID = new Guid("db9ced18-bee1-4c66-87d7-2d3ad54160c9"),
-                            PersonID = new Guid("e23d003b-c015-4fc8-bf6d-519b8225d7d8")
+                            LanguageID = new Guid("4468e7d0-30b0-4eb8-acee-f85f2070e892"),
+                            PersonID = new Guid("60462428-59e4-43e3-8f97-b4debedcc340")
                         },
                         new
                         {
-                            LanguageID = new Guid("db9ced18-bee1-4c66-87d7-2d3ad54160c9"),
-                            PersonID = new Guid("5fae0c20-903a-4280-8e02-a2ff7597a60d")
+                            LanguageID = new Guid("4468e7d0-30b0-4eb8-acee-f85f2070e892"),
+                            PersonID = new Guid("b89407ba-c4fd-4354-948b-1838e1b3be77")
                         },
                         new
                         {
-                            LanguageID = new Guid("db9ced18-bee1-4c66-87d7-2d3ad54160c9"),
-                            PersonID = new Guid("4c6fe5a1-9b29-4c5a-935a-68c49b1c9b99")
+                            LanguageID = new Guid("4468e7d0-30b0-4eb8-acee-f85f2070e892"),
+                            PersonID = new Guid("d967ea5a-0ab0-4e21-b6a4-9be6f5e921f5")
                         },
                         new
                         {
-                            LanguageID = new Guid("97eeb315-d320-41e5-ad5c-86261e56f944"),
-                            PersonID = new Guid("6e91f2e2-36ec-4147-8a9d-d36dcdd851f0")
+                            LanguageID = new Guid("ce71eef1-0fe8-495d-a8ff-e6e10713e6de"),
+                            PersonID = new Guid("8678839a-dbfe-49ba-bfa3-93e71b5d2945")
                         },
                         new
                         {
-                            LanguageID = new Guid("fbf73f92-08ac-4655-8947-b92ab9381a1c"),
-                            PersonID = new Guid("6e91f2e2-36ec-4147-8a9d-d36dcdd851f0")
+                            LanguageID = new Guid("5ee2ca5a-f2f5-40e5-9544-7bcca5519709"),
+                            PersonID = new Guid("8678839a-dbfe-49ba-bfa3-93e71b5d2945")
                         },
                         new
                         {
-                            LanguageID = new Guid("db9ced18-bee1-4c66-87d7-2d3ad54160c9"),
-                            PersonID = new Guid("cd7c5767-8cc0-4d9b-a7fe-363cd6095580")
+                            LanguageID = new Guid("4468e7d0-30b0-4eb8-acee-f85f2070e892"),
+                            PersonID = new Guid("f918763a-2e4a-45a8-8693-c16a6f343d8d")
                         },
                         new
                         {
-                            LanguageID = new Guid("97eeb315-d320-41e5-ad5c-86261e56f944"),
-                            PersonID = new Guid("cd7c5767-8cc0-4d9b-a7fe-363cd6095580")
+                            LanguageID = new Guid("ce71eef1-0fe8-495d-a8ff-e6e10713e6de"),
+                            PersonID = new Guid("f918763a-2e4a-45a8-8693-c16a6f343d8d")
                         },
                         new
                         {
-                            LanguageID = new Guid("92ed3a0a-f30f-40fb-ac84-96f776f2b223"),
-                            PersonID = new Guid("cd7c5767-8cc0-4d9b-a7fe-363cd6095580")
+                            LanguageID = new Guid("8c659377-b25f-41d1-b355-f1f2dc08bd59"),
+                            PersonID = new Guid("f918763a-2e4a-45a8-8693-c16a6f343d8d")
                         },
                         new
                         {
-                            LanguageID = new Guid("db9ced18-bee1-4c66-87d7-2d3ad54160c9"),
-                            PersonID = new Guid("cb60f98e-2c8d-4b63-8d55-1c3162108f13")
+                            LanguageID = new Guid("4468e7d0-30b0-4eb8-acee-f85f2070e892"),
+                            PersonID = new Guid("6785893f-9f6a-4560-90e9-5928c0543821")
                         });
                 });
 
@@ -430,43 +483,43 @@ namespace WebProject.Migrations
                     b.HasData(
                         new
                         {
-                            ID = new Guid("e23d003b-c015-4fc8-bf6d-519b8225d7d8"),
-                            CityID = new Guid("c0934d01-eb93-4d07-af96-972526b3733d"),
+                            ID = new Guid("60462428-59e4-43e3-8f97-b4debedcc340"),
+                            CityID = new Guid("adc5c322-8f30-41f0-a472-a2fc6a7b56cb"),
                             Name = "Jane Doe",
                             PhoneNumber = "555-123 45"
                         },
                         new
                         {
-                            ID = new Guid("5fae0c20-903a-4280-8e02-a2ff7597a60d"),
-                            CityID = new Guid("1065337c-9786-493a-af84-665504b4188e"),
+                            ID = new Guid("b89407ba-c4fd-4354-948b-1838e1b3be77"),
+                            CityID = new Guid("8f9cee4e-79f5-46aa-ad01-8d922479f497"),
                             Name = "John Doe",
                             PhoneNumber = "555-123 45"
                         },
                         new
                         {
-                            ID = new Guid("4c6fe5a1-9b29-4c5a-935a-68c49b1c9b99"),
-                            CityID = new Guid("2e00bcb5-2ef0-4285-a566-61f6d6e00248"),
+                            ID = new Guid("d967ea5a-0ab0-4e21-b6a4-9be6f5e921f5"),
+                            CityID = new Guid("529b7340-0ded-4d89-ace3-17bf1a275181"),
                             Name = "Marge Simpson",
                             PhoneNumber = "939-555-0113"
                         },
                         new
                         {
-                            ID = new Guid("6e91f2e2-36ec-4147-8a9d-d36dcdd851f0"),
-                            CityID = new Guid("248a564d-1e7a-4e80-89bd-473436a1de1b"),
+                            ID = new Guid("8678839a-dbfe-49ba-bfa3-93e71b5d2945"),
+                            CityID = new Guid("3f8b480c-3913-4508-96ad-4967133cb3b7"),
                             Name = "Somna Sculpt",
                             PhoneNumber = "1-555-766728578"
                         },
                         new
                         {
-                            ID = new Guid("cd7c5767-8cc0-4d9b-a7fe-363cd6095580"),
-                            CityID = new Guid("b11cfbec-0cde-4242-bc1b-b3040c4d008c"),
+                            ID = new Guid("f918763a-2e4a-45a8-8693-c16a6f343d8d"),
+                            CityID = new Guid("7ad71a68-8329-4e80-aae0-2724aa09df11"),
                             Name = "Anthony Hopkins",
                             PhoneNumber = "555-6162"
                         },
                         new
                         {
-                            ID = new Guid("cb60f98e-2c8d-4b63-8d55-1c3162108f13"),
-                            CityID = new Guid("49b0612d-af88-49e6-9d28-6076fee4351c"),
+                            ID = new Guid("6785893f-9f6a-4560-90e9-5928c0543821"),
+                            CityID = new Guid("00a0c2df-0487-46a5-ac57-37b2807bf600"),
                             Name = "Saul Goodman",
                             PhoneNumber = "505-842-5662"
                         });

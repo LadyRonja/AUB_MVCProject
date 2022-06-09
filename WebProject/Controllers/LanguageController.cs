@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +10,7 @@ using WebProject.Models;
 
 namespace WebProject.Controllers
 {
+    [Authorize(Roles = "User")]
     public class LanguageController : Controller
     {
         private static LanguagesViewModel viewModel;
@@ -30,6 +33,10 @@ namespace WebProject.Controllers
             // Update viewmodel information
             viewModel.AllLanguage = _context.Languages.ToList();
             UpdateViewModelSpeakers();
+
+            // Settings dropdown list option
+            ViewBag.People = new SelectList(_context.People.ToList(), "ID", "Name");
+            ViewBag.Languages = new SelectList(_context.Languages.ToList(), "ID", "Name");
 
             return View("LanguagesTable", viewModel);
         }
