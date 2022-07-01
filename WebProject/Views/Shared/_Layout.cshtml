@@ -14,17 +14,16 @@
                 <li>@Html.ActionLink("About", "About", "Home")</li>
                 <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 <li>@Html.ActionLink("Projects", "Projects", "Home")</li>
+                <li>@Html.ActionLink("React", "Index", "React")</li>
                 @if (User.IsInRole("User"))
                 {
-                    <li>@Html.ActionLink("People", "Index", "People")</li>
-                    <li>@Html.ActionLink("Cities", "Index", "City")</li>
-                    <li>@Html.ActionLink("Countries", "Index", "Country")</li>
-                    <li>@Html.ActionLink("Languages", "Index", "Language")</li>
-                 }
+            <li>@Html.ActionLink("People", "Index", "People")</li>
+                            <li>@Html.ActionLink("Cities", "Index", "City")</li>
+                                            <li>@Html.ActionLink("Countries", "Index", "Country")</li>
+                                                            <li>@Html.ActionLink("Languages", "Index", "Language")</li>}
                 @if (User.IsInRole("Admin"))
                 {
-                    <li>@Html.ActionLink("Roles", "Index", "Role")</li>
-                }
+            <li>@Html.ActionLink("Roles", "Index", "Role")</li>}
 
             </ul>
             <partial name="_LoginPartial" />
