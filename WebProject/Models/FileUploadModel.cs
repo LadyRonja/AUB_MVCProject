@@ -11,6 +11,6 @@ namespace WebProject.Models
     {
         [Required(ErrorMessage = "Please choose profile image")]
         [Display(Name = "Profile Picture")]
-        public IFormFile File { get; set; }
+        public IFormFile File { get; }
     }
 }
