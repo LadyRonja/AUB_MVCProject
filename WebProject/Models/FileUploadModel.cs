@@ -13,8 +13,6 @@ namespace WebProject.Models
 
         [Required(ErrorMessage = "Please choose profile image")]
         [Display(Name = "Profile Picture")]
-        public IFormFile File { get; }
-        
-        public int sillyInt = 20;
+        public IFormFile File { get; set; }
     }
 }
