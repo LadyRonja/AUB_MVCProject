@@ -226,3 +226,5 @@ D:\AUB\MVC\WebProject\bin\Debug\netcoreapp3.1\Microsoft.Web.Infrastructure.dll
 D:\AUB\MVC\WebProject\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
 D:\AUB\MVC\WebProject\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 D:\AUB\MVC\WebProject\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
+D:\AUB\MVC\WebProject\obj\Debug\netcoreapp3.1\Razor\Views\ImageUpload\Index.cshtml.g.cs
+D:\AUB\MVC\WebProject\obj\Debug\netcoreapp3.1\Razor\Views\ImageUpload\Gallery.cshtml.g.cs
