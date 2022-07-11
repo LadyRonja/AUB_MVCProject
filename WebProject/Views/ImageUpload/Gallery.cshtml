@@ -1,0 +1,13 @@
+﻿@model List<string>
+
+<div id="content-container">
+
+
+    @foreach (string p in Model)
+    {
+        <img src="/@p"
+             class="rounded-circle"
+             height="200" width="200"
+             asp-append-version="true" />
+    }
+</div>

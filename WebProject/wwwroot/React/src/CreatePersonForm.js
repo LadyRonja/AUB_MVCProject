@@ -40,7 +40,7 @@ class CreatePersonForm extends Component {
                     ReactDOM.render(<App />, document.querySelector("#table-container"));
 
                     document.querySelector("#nameField").value = "";
-                    document.querySelector("#cityField").value = "";
+                    //document.querySelector("#cityField").value = "";
                     document.querySelector("#numberField").value = "";
                 });
         }
