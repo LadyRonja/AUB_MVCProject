@@ -9,8 +9,6 @@ namespace WebProject.Models
 {
     public class FileUploadModel
     {
-        // Here we introduce a conflict by removing stuff and adding something else in an existing file
-
         [Required(ErrorMessage = "Please choose profile image")]
         [Display(Name = "Profile Picture")]
         public IFormFile File { get; set; }
